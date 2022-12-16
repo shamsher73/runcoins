@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>764984617364-lipim4e9jdo6mhv5o8bgsof4sebjjdj9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.764984617364-lipim4e9jdo6mhv5o8bgsof4sebjjdj9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDG4qf0MWZWZA9Wt1Mul0Jk3870C05Vc3Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>764984617364</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.sweatcoinmobile</string>
+	<key>PROJECT_ID</key>
+	<string>sweatcoinmobile-a959d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sweatcoinmobile-a959d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:764984617364:ios:62597f3ac053ed20e18781</string>
+</dict>
+</plist>
