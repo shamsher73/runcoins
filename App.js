@@ -6,30 +6,42 @@
  * @flow strict-local
  */
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import type {Node} from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
   useColorScheme,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import GoogleButton from './src/components/GoogleButton';
 import Home from './src/screens/Home';
-
+import AppleHealthKit from 'react-native-health';
 
 const App: () => Node = () => {
+  const permissions = {
+    permissions: {
+      read: [
+        AppleHealthKit.Constants.Permissions.Steps,
+        AppleHealthKit.Constants.Permissions.StepCount,
+      ],
+      // write: [AppleHealthKit.Constants.Permissions.Steps],
+    },
+  };
+
+  AppleHealthKit.initHealthKit(permissions, (error: string) => {
+    /* Called after we receive a response from the system */
+
+    if (error) {
+      console.log('[ERROR] Cannot grant permissions!');
+    }
+  });
+
   const [user, setUser] = useState(null);
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -43,37 +55,16 @@ const App: () => Node = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          {user ? <Home /> : <GoogleButton setUser={setUser} />}
-        </View>
-      </ScrollView>
+
+      <View
+        style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          height: '100%',
+        }}>
+        {user ? <Home /> : <GoogleButton setUser={setUser} />}
+      </View>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;

@@ -40,6 +40,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = sweatcoinmobile/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-sweatcoinmobile-sweatcoinmobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sweatcoinmobile-sweatcoinmobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-sweatcoinmobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sweatcoinmobile.debug.xcconfig"; path = "Target Support Files/Pods-sweatcoinmobile/Pods-sweatcoinmobile.debug.xcconfig"; sourceTree = "<group>"; };
+		52175585294C4789007C1E92 /* sweatcoinmobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = sweatcoinmobile.entitlements; path = sweatcoinmobile/sweatcoinmobile.entitlements; sourceTree = "<group>"; };
 		52D89305294C34AE00791048 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-sweatcoinmobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sweatcoinmobile.release.xcconfig"; path = "Target Support Files/Pods-sweatcoinmobile/Pods-sweatcoinmobile.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-sweatcoinmobile-sweatcoinmobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sweatcoinmobile-sweatcoinmobileTests.debug.xcconfig"; path = "Target Support Files/Pods-sweatcoinmobile-sweatcoinmobileTests/Pods-sweatcoinmobile-sweatcoinmobileTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		13B07FAE1A68108700A75B9A /* sweatcoinmobile */ = {
 			isa = PBXGroup;
 			children = (
+				52175585294C4789007C1E92 /* sweatcoinmobile.entitlements */,
 				52D89305294C34AE00791048 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -491,7 +493,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = sweatcoinmobile/sweatcoinmobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JTF2YF2PLK;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = sweatcoinmobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -504,6 +508,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.sweatcoinmobile;
 				PRODUCT_NAME = sweatcoinmobile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -517,7 +522,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = sweatcoinmobile/sweatcoinmobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JTF2YF2PLK;
 				INFOPLIST_FILE = sweatcoinmobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -529,6 +536,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.sweatcoinmobile;
 				PRODUCT_NAME = sweatcoinmobile;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
