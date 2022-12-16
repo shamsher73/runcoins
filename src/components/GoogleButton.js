@@ -50,7 +50,7 @@ const GoogleButton = ({setUser}) => {
           GoogleSignin.signIn()
             .then(userInfo => {
               console.log('user logged in');
-              // console.log(userInfo.user.id);
+              console.log(userInfo);
               register(userInfo.user);
               setUser(userInfo);
             })

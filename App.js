@@ -9,11 +9,8 @@
 import React, {useState} from 'react';
 import type {Node} from 'react';
 import {
-  Button,
   SafeAreaView,
-  ScrollView,
   StatusBar,
-  StyleSheet,
   useColorScheme,
   View,
 } from 'react-native';
