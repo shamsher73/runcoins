@@ -1,20 +1,16 @@
+import {useMutation} from '@apollo/react-hooks';
 import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import appleHealthKit from 'react-native-health';
+import {UPDATE_STEP_COUNT} from '../queries';
+import StepCount from './StepCount';
 import StepGraph from './StepGraph';
-import makeApolloClient from './../apollo';
-import {ApolloProvider} from '@apollo/react-hooks';
 
-const Home = () => {
+const Home = ({user}) => {
   const [stepCount, setStepCount] = useState(0);
-  const [client, setClient] = useState(null);
-  useEffect(() => {
-    const fetchSession = async () => {
-      const clientApollo = makeApolloClient('');
-      await setClient(clientApollo);
-    };
-    fetchSession();
-  }, []);
+  const [stepId, setStepId] = useState(null);
+  const [updateStepCount, {data, loading, error}] =
+    useMutation(UPDATE_STEP_COUNT);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,19 +28,26 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!client) {
-    return <></>;
-  }
+  useEffect(() => {
+    const updateTimer = setInterval(() => {
+      const date = new Date().toISOString().split('T')[0];
+      updateStepCount({
+        variables: {
+          userId: user.id,
+          date: date,
+          steps: stepCount,
+        },
+      });
+      console.log('updated step');
+    }, 5000);
+    return () => clearTimeout(updateTimer);
+  }, [stepCount]);
+
   return (
-    <ApolloProvider client={client}>
-      <View>
-        <Text>StepCount</Text>
-        <View style={{marginTop: 50, alignItems: 'center'}}>
-          <Text style={{fontSize: 60}}>{stepCount}</Text>
-        </View>
-        <StepGraph />
-      </View>
-    </ApolloProvider>
+    <View>
+      <StepCount step={stepCount} setStepId={setStepId} user={user} />
+      <StepGraph user={user} />
+    </View>
   );
 };
 

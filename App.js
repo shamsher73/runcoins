@@ -6,19 +6,16 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import type {Node} from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, StatusBar, useColorScheme, View} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import GoogleButton from './src/components/GoogleButton';
 import Home from './src/screens/Home';
 import AppleHealthKit from 'react-native-health';
+import {ApolloProvider} from '@apollo/react-hooks';
+import makeApolloClient from './src/apollo';
 
 const App: () => Node = () => {
   const permissions = {
@@ -41,26 +38,40 @@ const App: () => Node = () => {
 
   const [user, setUser] = useState(null);
   const isDarkMode = useColorScheme() === 'dark';
+  const [client, setClient] = useState(null);
+  useEffect(() => {
+    const fetchSession = async () => {
+      const clientApollo = makeApolloClient('');
+      await setClient(clientApollo);
+    };
+    fetchSession();
+  }, []);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
+  if (!client) {
+    return <></>;
+  }
 
-      <View
-        style={{
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          height: '100%',
-        }}>
-        {user ? <Home /> : <GoogleButton setUser={setUser} />}
-      </View>
-    </SafeAreaView>
+  return (
+    <ApolloProvider client={client}>
+      <SafeAreaView style={backgroundStyle}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            height: '100%',
+          }}>
+          {user ? <Home user={user}/> : <GoogleButton setUser={setUser} />}
+        </View>
+      </SafeAreaView>
+    </ApolloProvider>
   );
 };
 

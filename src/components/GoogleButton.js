@@ -39,8 +39,6 @@ const GoogleButton = ({setUser}) => {
         variables: variables,
       }),
     });
-    console.log('register reponse');
-    console.log(response);
   };
 
   const onButtonPress = () => {
@@ -49,10 +47,8 @@ const GoogleButton = ({setUser}) => {
         if (hasPlayService) {
           GoogleSignin.signIn()
             .then(userInfo => {
-              console.log('user logged in');
-              console.log(userInfo);
               register(userInfo.user);
-              setUser(userInfo);
+              setUser(userInfo.user);
             })
             .catch(e => {
               console.log('ERROR IS: ' + JSON.stringify(e));

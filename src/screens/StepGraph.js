@@ -1,27 +1,16 @@
-import gql from 'graphql-tag';
 import React from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {Dimensions, Text, View} from 'react-native';
 
 import {BarChart} from 'react-native-chart-kit';
+import { FETCH_STEPS } from '../queries';
 
-export const FETCH_TODOS = gql`
-  query {
-    users_by_pk(id: "115217961756992723403") {
-      id
-      email
-      steps {
-        id
-        date
-        steps
-      }
-    }
-  }
-`;
 
-const StepGraph = () => {
-  const {data, error, loading} = useQuery(FETCH_TODOS, {variables: {}});
 
+const StepGraph = ({user}) => {
+  const {data, error, loading} = useQuery(FETCH_STEPS, {
+    variables: {userId: user.id},
+  });
   if (!data) return null;
 
   const dates = data.users_by_pk.steps.map(step => step.date);
