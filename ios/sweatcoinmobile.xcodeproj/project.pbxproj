@@ -495,7 +495,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = sweatcoinmobile/sweatcoinmobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JTF2YF2PLK;
+				DEVELOPMENT_TEAM = DYDH46UA87;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = sweatcoinmobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -524,7 +524,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = sweatcoinmobile/sweatcoinmobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JTF2YF2PLK;
+				DEVELOPMENT_TEAM = DYDH46UA87;
 				INFOPLIST_FILE = sweatcoinmobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

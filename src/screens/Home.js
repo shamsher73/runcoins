@@ -1,8 +1,8 @@
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
 import appleHealthKit from 'react-native-health';
 import {GET_USER, UPDATE_STEP_COUNT} from '../queries';
+import Profile from './Profile';
 import StepCount from './StepCount';
 import StepGraph from './StepGraph';
 
@@ -44,13 +44,14 @@ const Home = ({user}) => {
     return () => clearTimeout(updateTimer);
   }, [stepCount]);
 
+  console.log(user.photo);
   if (!data) return null;
   return (
-    <View>
-      <Text>Balance:{data.users_by_pk.balance}</Text>
+    <>
+      <Profile user={user} balance={data.users_by_pk.balance}/>
       <StepCount step={stepCount} setStepId={setStepId} user={user} />
       <StepGraph user={user} />
-    </View>
+    </>
   );
 };
 
