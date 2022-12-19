@@ -1,17 +1,18 @@
-import {useMutation} from '@apollo/react-hooks';
+import {useMutation, useQuery} from '@apollo/react-hooks';
 import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import appleHealthKit from 'react-native-health';
-import {UPDATE_STEP_COUNT} from '../queries';
+import {GET_USER, UPDATE_STEP_COUNT} from '../queries';
 import StepCount from './StepCount';
 import StepGraph from './StepGraph';
 
 const Home = ({user}) => {
   const [stepCount, setStepCount] = useState(0);
   const [stepId, setStepId] = useState(null);
-  const [updateStepCount, {data, loading, error}] =
-    useMutation(UPDATE_STEP_COUNT);
-
+  const [updateStepCount] = useMutation(UPDATE_STEP_COUNT);
+  const {data, error, loading} = useQuery(GET_USER, {
+    variables: {userId: user.id},
+  });
   useEffect(() => {
     const timer = setInterval(() => {
       let options = {
@@ -43,8 +44,10 @@ const Home = ({user}) => {
     return () => clearTimeout(updateTimer);
   }, [stepCount]);
 
+  if (!data) return null;
   return (
     <View>
+      <Text>Balance:{data.users_by_pk.balance}</Text>
       <StepCount step={stepCount} setStepId={setStepId} user={user} />
       <StepGraph user={user} />
     </View>

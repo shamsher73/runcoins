@@ -43,3 +43,12 @@ export const ADD_STEP_RECORD = gql`
     }
   }
 `;
+
+export const GET_USER = gql`
+  query ($userId: String!) {
+    users_by_pk(id: $userId) {
+      id
+      balance
+    }
+  }
+`;

@@ -20,7 +20,6 @@ const StepCount = ({step, setStepId, user}) => {
 
   return (
     <View>
-      <Text>StepCount</Text>
       <View style={{marginTop: 50, alignItems: 'center'}}>
         <Text style={{fontSize: 60}}>{step}</Text>
       </View>
