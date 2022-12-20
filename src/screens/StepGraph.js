@@ -13,7 +13,7 @@ const StepGraph = ({user}) => {
   });
   if (!data) return null;
 
-  const dates = data.users_by_pk.steps.map(step => step.date);
+  const dates = data.users_by_pk.steps.map(step => new Date(step.date).toDateString().slice(4,10));
   const stepCounts = data.users_by_pk.steps.map(step => step.steps);
   const dataPoints = {
     labels: dates,
@@ -26,15 +26,15 @@ const StepGraph = ({user}) => {
 
   return (
     <View>
-      <Text>StepGraph</Text>
       <View>
         <BarChart
           data={dataPoints}
           style={{
             marginVertical: 8,
             borderRadius: 16,
+            padding: 10
           }}
-          width={Dimensions.get('window').width} // from react-native
+          width={Dimensions.get('window').width - 20} // from react-native
           height={220}
           chartConfig={{
             backgroundColor: '#e26a00',

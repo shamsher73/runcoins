@@ -5,7 +5,7 @@ export const FETCH_STEPS = gql`
     users_by_pk(id: $userId) {
       id
       email
-      steps {
+      steps(order_by: {date: desc}) {
         id
         date
         steps

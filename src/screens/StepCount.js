@@ -21,7 +21,7 @@ const StepCount = ({step, setStepId, user}) => {
   return (
     <View>
       <View style={{marginTop: 50, alignItems: 'center'}}>
-        <Text style={{fontSize: 60}}>{step}</Text>
+        <Text style={{fontSize: 88, color: 'white'}}>{step}</Text>
       </View>
       {data && data.step_counts && !data.step_counts[0] && (
         <CreateStepRecord user={user} />

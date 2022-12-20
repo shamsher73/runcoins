@@ -17,7 +17,7 @@ const Profile = ({user, balance}) => {
     <>
       <View style={styles.container}>
         <View style={styles.balance}>
-          <Text>${balance}</Text>
+          <Text>Balance ${balance}</Text>
         </View>
         <Pressable
           //   style={[styles.button, styles.buttonClose]}
@@ -77,12 +77,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   balance: {
-    width: 50,
+    width: 100,
     height: 50,
     backgroundColor: 'lightblue',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 10,
+    borderRadius: 20,
   },
   centeredView: {
     flex: 1,

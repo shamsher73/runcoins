@@ -48,7 +48,7 @@ const App: () => Node = () => {
   }, []);
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: '#E47DFD',
   };
 
   if (!client) {
@@ -65,7 +65,6 @@ const App: () => Node = () => {
 
         <View
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
             height: '100%',
           }}>
           {user ? <Home user={user}/> : <GoogleButton setUser={setUser} />}
