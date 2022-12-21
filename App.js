@@ -9,6 +9,7 @@
 import React, {useEffect, useState} from 'react';
 import type {Node} from 'react';
 import {
+  Alert,
   Platform,
   SafeAreaView,
   StatusBar,
@@ -23,8 +24,24 @@ import AppleHealthKit from 'react-native-health';
 import {ApolloProvider} from '@apollo/react-hooks';
 import makeApolloClient from './src/apollo';
 import GoogleFit, {Scopes} from 'react-native-google-fit';
+import messaging from '@react-native-firebase/messaging';
+import axios from 'axios';
 
 const App: () => Node = () => {
+
+  const sendFcmToken = async () => {
+    try {
+      await messaging().registerDeviceForRemoteMessages();
+      const token = await messaging().getToken();
+      console.log('token is', token);
+      await axios.post('http://127.0.0.1:3000/register', {token});
+    } catch (err) {
+      //Do nothing
+      console.log(err.response.data);
+      return;
+    }
+  };
+
   const permissions = {
     permissions: {
       read: [
@@ -38,6 +55,17 @@ const App: () => Node = () => {
   const [user, setUser] = useState(null);
   const isDarkMode = useColorScheme() === 'dark';
   const [client, setClient] = useState(null);
+  useEffect(() => {
+    sendFcmToken();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
   useEffect(() => {
     const fetchSession = async () => {
       const clientApollo = makeApolloClient('');
