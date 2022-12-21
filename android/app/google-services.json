@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "764984617364",
+    "project_id": "sweatcoinmobile-a959d",
+    "storage_bucket": "sweatcoinmobile-a959d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764984617364:android:7f162030111e5fabe18781",
+        "android_client_info": {
+          "package_name": "com.sweatcoinmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764984617364-g9otsqcqtc5lma0nnibgqsofcqlj9iug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sweatcoinmobile",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "764984617364-62n9l790pnvarvv82tpb4127ht0p9dn2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARgCAQGTm00S_86V2AyVUn8JqWzD6Lztc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764984617364-62n9l790pnvarvv82tpb4127ht0p9dn2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "764984617364-lipim4e9jdo6mhv5o8bgsof4sebjjdj9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.sweatcoinmobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,7 +5,7 @@ const makeApolloClient = (token) => {
 
   // create an apollo link instance, a network interface for apollo client
   const link = new HttpLink({
-    uri: 'http://localhost:8080/v1/graphql',
+    uri: 'http://127.0.0.1:8080/v1/graphql',
     headers: {
         'x-hasura-admin-secret': 'myadminsecretkey'
     }

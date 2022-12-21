@@ -9,7 +9,7 @@ import {View} from 'react-native';
 const GoogleButton = ({setUser}) => {
   GoogleSignin.configure({
     androidClientId:
-      '81514394714-atof3fa38e3khdhc89gtumoqu3187b69.apps.googleusercontent.com',
+      '764984617364-62n9l790pnvarvv82tpb4127ht0p9dn2.apps.googleusercontent.com',
     iosClientId:
       '11981908921-4rc2cbllll4t04j59mio6b3e77k9kn52.apps.googleusercontent.com',
   });

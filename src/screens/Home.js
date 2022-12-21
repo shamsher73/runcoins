@@ -1,5 +1,6 @@
 import {useMutation, useQuery} from '@apollo/react-hooks';
 import React, {useEffect, useState} from 'react';
+import {Platform} from 'react-native';
 import appleHealthKit from 'react-native-health';
 import {GET_USER, UPDATE_STEP_COUNT} from '../queries';
 import Profile from './Profile';
@@ -19,12 +20,14 @@ const Home = ({user}) => {
         date: new Date().toISOString(), // optional; default now
         includeManuallyAdded: true, // optional: default true
       };
-      appleHealthKit.getStepCount(options, (err, results) => {
-        if (err) {
-          return;
-        }
-        setStepCount(results.value);
-      });
+      if (Platform.OS === 'ios') {
+        appleHealthKit.getStepCount(options, (err, results) => {
+          if (err) {
+            return;
+          }
+          setStepCount(results.value);
+        });
+      }
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
@@ -43,12 +46,10 @@ const Home = ({user}) => {
     }, 5000);
     return () => clearTimeout(updateTimer);
   }, [stepCount]);
-
-  console.log(user.photo);
   if (!data) return null;
   return (
     <>
-      <Profile user={user} balance={data.users_by_pk.balance}/>
+      <Profile user={user} balance={data.users_by_pk.balance} />
       <StepCount step={stepCount} setStepId={setStepId} user={user} />
       <StepGraph user={user} />
     </>

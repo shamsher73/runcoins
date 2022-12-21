@@ -20,14 +20,19 @@ const Profile = ({user, balance}) => {
           <Text>Balance ${balance}</Text>
         </View>
         <Pressable
-          //   style={[styles.button, styles.buttonClose]}
           onPress={() => setModalVisible(!modalVisible)}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: user.photo,
-            }}
-          />
+          {user.photo ? (
+            <Image
+              style={styles.image}
+              source={{
+                uri: user.photo,
+              }}
+            />
+          ) : (
+            <View style={styles.textAvatar}>
+              <Text style={styles.textStyle}>{user.name.charAt(0)}</Text>
+            </View>
+          )}
         </Pressable>
       </View>
       <Modal
@@ -76,6 +81,18 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
   },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textAvatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    backgroundColor: 'lightblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   balance: {
     width: 100,
     height: 50,
@@ -104,6 +121,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  textStyle: {
+    fontSize: 24
   },
 });
 

@@ -8,7 +8,7 @@
 
 import React, {useEffect, useState} from 'react';
 import type {Node} from 'react';
-import {SafeAreaView, StatusBar, useColorScheme, View} from 'react-native';
+import {Platform, SafeAreaView, StatusBar, useColorScheme, View} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import GoogleButton from './src/components/GoogleButton';
@@ -27,14 +27,15 @@ const App: () => Node = () => {
       // write: [AppleHealthKit.Constants.Permissions.Steps],
     },
   };
+  if (Platform.OS === 'ios') {
+    AppleHealthKit.initHealthKit(permissions, (error: string) => {
+      /* Called after we receive a response from the system */
+      if (error) {
+        console.log('[ERROR] Cannot grant permissions!');
+      }
+    });
+  }
 
-  AppleHealthKit.initHealthKit(permissions, (error: string) => {
-    /* Called after we receive a response from the system */
-
-    if (error) {
-      console.log('[ERROR] Cannot grant permissions!');
-    }
-  });
 
   const [user, setUser] = useState(null);
   const isDarkMode = useColorScheme() === 'dark';
