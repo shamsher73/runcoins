@@ -6,6 +6,7 @@ import {GET_USER, UPDATE_STEP_COUNT} from '../queries';
 import Profile from './Profile';
 import StepCount from './StepCount';
 import StepGraph from './StepGraph';
+import GoogleFit, {BucketUnit, Scopes} from 'react-native-google-fit';
 
 const Home = ({user}) => {
   const [stepCount, setStepCount] = useState(0);
@@ -14,6 +15,10 @@ const Home = ({user}) => {
   const {data, error, loading} = useQuery(GET_USER, {
     variables: {userId: user.id},
   });
+
+
+
+
   useEffect(() => {
     const timer = setInterval(() => {
       let options = {
@@ -27,6 +32,8 @@ const Home = ({user}) => {
           }
           setStepCount(results.value);
         });
+      } else {
+        GoogleFit.getDailySteps(new Date().toISOString()).then((res) => setStepCount(res[2].steps[0].value)).catch()
       }
     }, 1000);
     return () => clearTimeout(timer);
