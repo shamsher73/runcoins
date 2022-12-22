@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState} from 'react';
 import {
   View,
@@ -9,10 +10,18 @@ import {
   Pressable,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Button,
 } from 'react-native';
 
 const Profile = ({user, balance}) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const Logout = async() => {
+    try {
+      await AsyncStorage.removeItem('loggedUser');
+    } catch(e) {
+      // remove error
+    }
+  }
   return (
     <>
       <View style={styles.container}>
@@ -59,6 +68,7 @@ const Profile = ({user, balance}) => {
                     uri: user.photo,
                   }}
                 />
+                {/* <Button onPress={Logout} title='Log out' /> */}
               </View>
             </TouchableWithoutFeedback>
           </View>

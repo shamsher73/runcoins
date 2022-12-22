@@ -19,9 +19,10 @@ import {
 import GoogleButton from './src/components/GoogleButton';
 import Home from './src/screens/Home';
 import {ApolloProvider} from '@apollo/react-hooks';
-import makeApolloClient from './src/apollo';
+import makeApolloClient from './src/services/apollo';
 import sendFcmToken from './src/services/TokenService';
 import initFitness from './src/services/FitnessService';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const App: () => Node = () => {
   const [user, setUser] = useState(null);
@@ -30,6 +31,20 @@ const App: () => Node = () => {
   useEffect(() => {
     sendFcmToken();
     initFitness();
+  }, []);
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('loggedUser');
+        const value = jsonValue != null ? JSON.parse(jsonValue) : null;
+        setUser(value);
+      } catch (e) {
+        // error reading value
+      }
+    };
+
+    getUser();
   }, []);
 
   // useEffect(() => {
@@ -56,7 +71,6 @@ const App: () => Node = () => {
   if (!client) {
     return <></>;
   }
-
   return (
     <ApolloProvider client={client}>
       <SafeAreaView style={backgroundStyle}>

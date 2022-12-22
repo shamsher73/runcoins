@@ -6,6 +6,7 @@ import {
 } from '@react-native-google-signin/google-signin';
 import {View} from 'react-native';
 import Config from 'react-native-config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const GoogleButton = ({setUser}) => {
   GoogleSignin.configure({
@@ -41,6 +42,15 @@ const GoogleButton = ({setUser}) => {
   };
 
   const onButtonPress = () => {
+    const storeData = async (value) => {
+      try {
+        const jsonValue = JSON.stringify(value);
+        await AsyncStorage.setItem('loggedUser', jsonValue);
+      } catch (e) {
+        // saving error
+      }
+    };
+
     GoogleSignin.hasPlayServices()
       .then(hasPlayService => {
         if (hasPlayService) {
@@ -48,6 +58,8 @@ const GoogleButton = ({setUser}) => {
             .then(userInfo => {
               register(userInfo.user);
               setUser(userInfo.user);
+              storeData(userInfo.user);
+
             })
             .catch(e => {
               console.log('ERROR IS: ' + JSON.stringify(e));
