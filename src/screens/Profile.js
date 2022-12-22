@@ -19,8 +19,7 @@ const Profile = ({user, balance}) => {
         <View style={styles.balance}>
           <Text>Balance ${balance}</Text>
         </View>
-        <Pressable
-          onPress={() => setModalVisible(!modalVisible)}>
+        <Pressable onPress={() => setModalVisible(!modalVisible)}>
           {user.photo ? (
             <Image
               style={styles.image}
@@ -123,7 +122,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   textStyle: {
-    fontSize: 24
+    fontSize: 24,
   },
 });
 

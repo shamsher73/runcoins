@@ -1,13 +1,14 @@
 
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/react-hooks';
+import Config from 'react-native-config';
 
 const makeApolloClient = (token) => {
 
   // create an apollo link instance, a network interface for apollo client
   const link = new HttpLink({
-    uri: 'http://127.0.0.1:8080/v1/graphql',
+    uri: Config.HASURA_URL,
     headers: {
-        'x-hasura-admin-secret': 'myadminsecretkey'
+        'x-hasura-admin-secret': Config.HASURA_ADMIN_SECRET
     }
   });
 

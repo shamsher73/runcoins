@@ -4,7 +4,7 @@ import {Text, View} from 'react-native';
 import CreateStepRecord from '../components/CreateStepRecord';
 import {FETCH_STEP_ID} from '../queries';
 
-const StepCount = ({step, setStepId, user}) => {
+const StepCount = ({step, user}) => {
   const {data, loading, error} = useQuery(FETCH_STEP_ID, {
     variables: {
       userId: user.id,

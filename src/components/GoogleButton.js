@@ -5,18 +5,17 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import {View} from 'react-native';
+import Config from 'react-native-config';
 
 const GoogleButton = ({setUser}) => {
   GoogleSignin.configure({
-    androidClientId:
-      '764984617364-62n9l790pnvarvv82tpb4127ht0p9dn2.apps.googleusercontent.com',
-    iosClientId:
-      '11981908921-4rc2cbllll4t04j59mio6b3e77k9kn52.apps.googleusercontent.com',
+    androidClientId: Config.ANDROID_CLIENT_ID,
+    iosClientId: Config.IOS_CLIENT_ID,
   });
 
   const register = async userInfo => {
-    const admin_secret = 'myadminsecretkey';
-    const url = 'http://localhost:8080/v1/graphql';
+    const admin_secret = Config.HASURA_ADMIN_SECRET;
+    const url = Config.HASURA_URL;
     const query = `mutation($userId: String!, $userEmail: String) {
       insert_users(objects: [{
         id: $userId, email: $userEmail, last_seen: "now()"

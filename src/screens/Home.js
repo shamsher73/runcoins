@@ -10,14 +10,10 @@ import GoogleFit, {BucketUnit, Scopes} from 'react-native-google-fit';
 
 const Home = ({user}) => {
   const [stepCount, setStepCount] = useState(0);
-  const [stepId, setStepId] = useState(null);
   const [updateStepCount] = useMutation(UPDATE_STEP_COUNT);
   const {data, error, loading} = useQuery(GET_USER, {
     variables: {userId: user.id},
   });
-
-
-
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -53,11 +49,12 @@ const Home = ({user}) => {
     }, 5000);
     return () => clearTimeout(updateTimer);
   }, [stepCount]);
+
   if (!data) return null;
   return (
     <>
       <Profile user={user} balance={data.users_by_pk.balance} />
-      <StepCount step={stepCount} setStepId={setStepId} user={user} />
+      <StepCount step={stepCount} user={user} />
       <StepGraph user={user} />
     </>
   );
